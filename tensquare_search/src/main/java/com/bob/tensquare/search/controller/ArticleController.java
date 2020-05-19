@@ -18,6 +18,11 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    /**
+     * 向索引库中添加文档
+     * @param article
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     public Result save(@RequestBody Article article){
         articleService.save(article);
@@ -25,7 +30,7 @@ public class ArticleController {
     }
 
     /**
-     * 搜索+分页
+     * 从索引库中查询+分页
      * @param key
      * @return
      */

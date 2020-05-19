@@ -1,12 +1,12 @@
-package com.bob.tesquare;
+package com.bob.tesquare.rabbitmq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class RabbitmqApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class);
+        SpringApplication.run(RabbitmqApplication.class);
     }
 }
