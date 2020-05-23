@@ -1,6 +1,8 @@
 package com.bob.tensquare.qa.controller;
 
 import java.util.Map;
+
+import com.bob.tensquare.qa.client.BaseClient;
 import com.bob.tensquare.qa.pojo.Problem;
 import com.bob.tensquare.qa.service.ProblemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 控制器层
  * @author Administrator
@@ -27,6 +32,25 @@ public class ProblemController {
 
 	@Autowired
 	private ProblemService problemService;
+
+
+	@Autowired(required = false)
+	private HttpServletRequest request;
+
+	@Autowired(required = false)
+	private BaseClient baseClient;
+
+	/**
+	 * 调用tensquare-base中的方法
+	 * @param labelId
+	 * @return
+	 */
+	@RequestMapping(value ="/label/{labelId}",method= RequestMethod.GET)
+	public Result findLabelById(@PathVariable String labelId){
+		Result result=baseClient.findById(labelId);
+		return result;
+	}
+
 
 	/**
 	 * 查询最新回答+分页
@@ -110,7 +134,7 @@ public class ProblemController {
     }
 	
 	/**
-	 * 增加
+	 * 增加,要求，用户必须登录之后，才能进行提问
 	 * @param problem
 	 */
 	@RequestMapping(method=RequestMethod.POST)

@@ -11,6 +11,7 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,6 +40,13 @@ public class ProblemService {
 	
 	@Autowired
 	private IdWorker idWorker;
+
+    //关闭注解的检查，由于HttpServletRequest是由服务器创建，
+    // 所以在服务器启动之前，spring容器中是没有这个对象的，
+    // 当然也就不能自动导入了。可以加上required=false关闭注
+    // 解检查，实际上他也不影响程序的正常运行。
+	@Autowired(required = false)
+	private HttpServletRequest request;
 
     /**
      * 获取最新的回答+分页查询
@@ -121,11 +129,16 @@ public class ProblemService {
 	}
 
 	/**
-	 * 增加
+	 * 增加+登录认证
 	 * @param problem
 	 */
 	public void add(Problem problem) {
-		problem.setId( idWorker.nextId()+"" );
+        //从request域中获取到登录认证,只有认证成功才可以发送文章
+        String claim= (String) request.getAttribute("claims_user");
+        if(claim==null || "".equals(claim) ){
+            throw new RuntimeException("请先登录好吗？宝贝");
+        }
+		problem.setId( idWorker.nextId()+"");
 		problemDao.save(problem);
 	}
 
