@@ -37,6 +37,15 @@ public class UserController {
 	@Autowired
 	private JwtUtil jwtUtil;
 
+    /**
+     * 供其他微服务调用
+     * 更新好友的粉丝数和用户关注数量
+     */
+    @RequestMapping(value="/{userid}/{friendid}/{x}",method = RequestMethod.PUT)
+    public void updateFansCountAndFollowCount(@PathVariable String userid,@PathVariable String friendid,@PathVariable int x){
+        userService.updateFansCountAndFollowCount(x,userid,friendid);
+    }
+
 	@RequestMapping(value="/login",method = RequestMethod.POST)
 	public Result login(@RequestBody User user){
 		user=userService.login(user);
@@ -50,7 +59,6 @@ public class UserController {
         map.put("roles","user");
 		return new Result(true,StatusCode.OK,"登录成功",map);
 	}
-
 
 	@RequestMapping(value="/register/{code}",method = RequestMethod.POST)
 	public Result register(@PathVariable String code,@RequestBody User user){

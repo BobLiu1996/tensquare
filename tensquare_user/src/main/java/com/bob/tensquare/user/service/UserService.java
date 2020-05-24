@@ -25,6 +25,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
 import com.bob.tensquare.user.dao.UserDao;
@@ -230,6 +231,15 @@ public class UserService {
 	}
 
 
-
-
+	/**
+	 *
+	 * @param x
+	 * @param userid
+	 * @param friendid
+	 */
+	@Transactional
+    public void updateFansCountAndFollowCount(int x, String userid, String friendid) {
+		userDao.updatefanscount(x,friendid);//当前用户关注了friendid,则friendid的粉丝数量要增加
+		userDao.updatefollowcount(x,userid);//当前用户的关注数量也要同时增加
+    }
 }
