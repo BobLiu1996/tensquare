@@ -21,4 +21,7 @@ eureka:
       defaultZone: http://127.0.0.1:6868/eureka/
   instance:                #跨域访问必须要设置，在本地机上测试，可以不用开
     prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
 

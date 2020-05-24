@@ -8,6 +8,8 @@ import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -21,12 +23,18 @@ public class LabelController {
     @Autowired
     private LabelService labelService;
 
+    @Autowired(required = false)
+    private HttpServletRequest request;
+
     /**
      * 查询所有，查询需要封装所查询到的数据
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
     public Result<List> findAll(){
+        String head=request.getHeader("Authorization");
+        System.out.println(head);
+
         List<Label> lists= labelService.findAll();
         return new Result<>(true, StatusCode.OK,"查询成功",lists);
     }
