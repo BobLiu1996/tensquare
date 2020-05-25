@@ -1,0 +1,45 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: tensquare-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/MyNameIsBob/MyConfig.git
+          private-key:
+            MIIEowIBAAKCAQEAxOcBmRjpSVS1YfDdva8sudeMvrHYkK/ahZFnbNBumOfETLzQ
+            jbzrU60Ty0axFtE6anij3eVweKZkJF/01sKzTvNJiGtTrc9t3qVOZ/EkdxFtPrCE
+            A/sxSCTYQaC27CvSccSRXEFu7EqGFGhI3AP48Q5OUR2/v/kjBdAAOd4M6PVj4gSw
+            cUZvyJgFQfkqKq6QwLNsji47FGfBdxhEvu2XyoJJGK+C/EX6+2sDZbjTamVcwOnS
+            H6oRXB8QOvufOE7AKVhI1L+ttt4eL7TfWWX1bS4TMrl9B5s3Kzwx03nAWWpGEa3q
+            fSnpCdpDyrap7o+O7s+ZLzB1+d1FSj0JXejASwIDAQABAoIBAFOjRHyBpmZtwvYt
+            WCNAi6ENPE2sQa+D4zClSOdhyfjNSgbGlVf/jX5noGbSSlrE2SlswT56PUIie5sv
+            31JyNbQth2iZHlxQJf1S/nEMb07caikc1ZbTVmWssOd/mvPK0YNd2dj0OmfIaBe3
+            DGvYjB/o0b+HAXJMI2JOrinmdlllU3GwYNwYJCMtTlN/FQVSML3TpU3Rwz8x7qsD
+            w0XXkEDMQpKUiqSftQ+qu+cw6fFrgU47shlY8+/bwZViGu2oTOqIiz6aWVM+IzMU
+            ucvKIDuAEYQscX7lXYNJDJG3dKcxhdiPSphLiQE4Sw5gAsF5lD+Jti6laML1bx0a
+            ZKjKkdECgYEA9Ga4gUmlzM6EFyJ9THGeHhvTuHLNizCZnVTe3A3Iwo2Den3+cwXZ
+            tLijCWpo4Jne0kebN04eojuaXQ+yQCRi8VPDrTaz/eETMXdaYJbdb8OX2QWWW3AP
+            wNBpVpxjD07qzjiU6BykwQCu5jHO5jWchLpWGIeyXTD3vgO0OxrAy3UCgYEAzj82
+            T5gawhpE6bhKg+kTMAvGM5/dYDmJ2jm1AFtpFdP9bvUdkIyzqD3RMeT6C/2EjEKi
+            7fpm/MtKxRKSCSueBbok+D96IdoHHjh0kS8fAZxEphldtpMDLEPrmFWZ16iTncpM
+            yngBdPHayYQhfK2sAxOzQaO51wLZL8d8csmSpL8CgYEAvt9Gc3qAKX6T/Llr3/rQ
+            ATW8WU4XpwASyKQS1QtS4lbA+zZRNaW5DAIzGlRnihnBwro3x66UECG6gbmTfbKt
+            L0o7BRk24y0X30cWZ18Lm5DHE6/gaJMRSoW57vF+D+OTT/EyokBUj4MoFRGLQ5FV
+            Jveb69Z2f3+RzG16IbrYHU0CgYBKhYyaNdt1RwifaneCMjU8pwR2oszad+/XagJ8
+            norZ2D86WFbWZACGSc/Mt2+h5Xh/NZSpaFDOBqZ9jrg1mA0BBMFW8Zivopfv03ZK
+            /zu02UH0wjWaQoRi+iemY0ezJLYxzWbxwWrFVp43MgbnhdkhQ30BuqbriZvwJ6RP
+            1YWnAQKBgFnsIZo1He/wO08Q2tLN7OVsd7J/JXqzVtIBJqxbK2CY7VyXut3BrQ3s
+            9Mn6km8qWydNXgZULFPmmnN6MIBQUTf+pGxrh506C5DxLywl/IGqJqsW1Y288xBX
+            bFlVdkJQy8urAzezQ+v7oeOIk/gUTxEauQQuLPGfi+UDeLF1LwyV
+
+  rabbitmq:
+    host: 192.168.56.3
+
+management: #暴露触发消息总线的地址
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
